@@ -6,22 +6,16 @@ import java.util.List;
 
 public class User {
 
-    private List<Goods> goods;
-
-    public User(List<Goods> goods){
-        this.goods = goods;
+    private List<Goods> sumGoods;
+    public User(List<Goods> sumGoods){
+        this.sumGoods = sumGoods;
     }
-
-    public int getScore(){
-        int scores=0;
-        for(int index=0;index<goods.size();index++){
-            if(goods.get(index).isPromotions()){
-                scores+=goods.get(index).getPrice().multiply(BigDecimal.valueOf(2)).intValue();
-            }else{
-                scores+=goods.get(index).getPrice().intValue();
-            }
+    public int getSumScore(){
+        int sumScores=0;
+        for(int index=0;index<sumGoods.size();index++){
+            sumScores+=sumGoods.get(index).getScore();
         }
-        return scores;
+        return sumScores;
     }
 
 }
