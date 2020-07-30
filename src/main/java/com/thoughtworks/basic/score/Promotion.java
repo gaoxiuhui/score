@@ -12,11 +12,14 @@ public class Promotion extends Goods{
         super(name,price);
     }
     @Override
-    public int getScore() {
-        if(super.getPrice().intValue()>1000){
-            return  super.getPrice().setScale( 0, BigDecimal.ROUND_DOWN ).intValue()+2000;
+    public int getScore(BigDecimal oriPrice,BigDecimal comPrice) {
+        if(comPrice.intValue()>0 && oriPrice.intValue()>1000){
+            return  oriPrice
+                    .subtract(comPrice)
+                    .setScale( 0, BigDecimal.ROUND_DOWN ).intValue()
+                    +comPrice.intValue() *2;
         }else{
-            return super.getPrice().setScale( 0, BigDecimal.ROUND_DOWN )
+            return oriPrice.setScale( 0, BigDecimal.ROUND_DOWN )
                     .multiply(BigDecimal.valueOf(2)).intValue();
         }
     }

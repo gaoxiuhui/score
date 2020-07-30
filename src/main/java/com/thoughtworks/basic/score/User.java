@@ -12,10 +12,23 @@ public class User {
     }
     public int getSumScore(){
         int sumScores=0;
+        BigDecimal sumPrice=BigDecimal.ZERO;
+        BigDecimal oriPrice=BigDecimal.ZERO;
+        BigDecimal comPrice=BigDecimal.ZERO;
+        for(Goods goods:sumGoods ){
+            sumPrice=sumPrice.add(goods.getPrice());
+        }
         for(int index=0;index<sumGoods.size();index++){
-            sumScores+=sumGoods.get(index).getScore();
+             oriPrice=sumGoods.get(index).getPrice();
+            if(index==0){
+                 comPrice=BigDecimal.valueOf(1000)
+                         .subtract(BigDecimal.ZERO);
+            }else{
+                comPrice=BigDecimal.valueOf(1000)
+                        .subtract(sumGoods.get(index-1).getPrice());
+            }
+            sumScores+=sumGoods.get(index).getScore(oriPrice,comPrice);
         }
         return sumScores;
     }
-
 }

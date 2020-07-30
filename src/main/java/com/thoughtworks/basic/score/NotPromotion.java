@@ -3,8 +3,6 @@ package com.thoughtworks.basic.score;
 import java.math.BigDecimal;
 
 public class NotPromotion extends  Goods{
-    private BigDecimal price;
-    private String name;
 
     public NotPromotion(BigDecimal price){
         super(price);
@@ -13,14 +11,14 @@ public class NotPromotion extends  Goods{
         super(name,price);
     }
     @Override
-    public int getScore() {
-        if(super.getPrice().intValue()>1000){
-            return  super.getPrice().subtract(BigDecimal.valueOf(1000))
+    public int getScore(BigDecimal oriPrice,BigDecimal comPrice) {
+        if(comPrice.intValue()>0 && oriPrice.intValue()>1000){
+            return  oriPrice.subtract(comPrice)
                    .divide(BigDecimal.valueOf(20))
                    .setScale( 0, BigDecimal.ROUND_DOWN )
-                   .intValue()+1000;
+                   .intValue()+comPrice.intValue();
         }else{
-            return super.getPrice().setScale( 0, BigDecimal.ROUND_DOWN ) .intValue();
+            return oriPrice.setScale( 0, BigDecimal.ROUND_DOWN ) .intValue();
         }
     }
 }

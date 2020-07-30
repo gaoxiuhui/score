@@ -52,6 +52,33 @@ public class UserTest {
         //then
         assertEquals(1067,scoreResult);
     }
-
+    //需求三 step2
+    @Test
+    public void should_return_3000_score_when_get_TvSet_2000(){
+        //given
+        Goods tvSet=new Promotion("电视机",BigDecimal.valueOf(2000));
+        List<Goods> goodsList=new ArrayList<>();
+        goodsList.add(tvSet);
+        User tom=new User(goodsList);
+        //when
+        int scoreResult=tom.getSumScore();
+        //then
+        assertEquals(3000,scoreResult);
+    }
+    //需求三 step3
+    @Test
+    public void should_return_1890_score_when_get_TvSet_800_and_washing_2000(){
+        //given
+        Goods tvSet=new Promotion("电视机",BigDecimal.valueOf(800));
+        Goods washing=new NotPromotion("洗衣机",BigDecimal.valueOf(2000));
+        List<Goods> goodsList=new ArrayList<>();
+        goodsList.add(tvSet);
+        goodsList.add(washing);
+        User tom=new User(goodsList);
+        //when
+        int scoreResult=tom.getSumScore();
+        //then
+        assertEquals(1890,scoreResult);
+    }
 
 }

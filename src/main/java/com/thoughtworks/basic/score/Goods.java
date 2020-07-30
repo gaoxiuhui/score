@@ -33,6 +33,6 @@ public abstract class Goods {
     public boolean isPromotions(){
         return promotions.contains(name);
     }
-    public abstract int getScore();
+    public abstract int getScore(BigDecimal oriPrice,BigDecimal comPrice);
 
 }
